@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LATE-MT試驗初步結果：24～72小時取栓術</title>
+<style>
+  :root {
+    --accent: #9c3d3d;
+    --accent-light: #f7ebe9;
+    --text: #2b2b2b;
+    --muted: #6b6b6b;
+    --border: #e3dcdc;
+    --good-bg: #eaf5ee;
+    --good-border: #7cb88f;
+    --warn-bg: #fdf0ee;
+    --warn-border: #d98a7d;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    background: #f8f7f7;
+    color: var(--text);
+    font-family: "Noto Sans TC", "PingFang TC", "Microsoft JhengHei", -apple-system, sans-serif;
+    line-height: 1.9;
+  }
+  .wrapper {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 48px 24px 80px;
+  }
+  header.hero {
+    border-left: 6px solid var(--accent);
+    padding: 8px 0 8px 20px;
+    margin-bottom: 36px;
+  }
+  .tag {
+    display: inline-block;
+    background: var(--accent-light);
+    color: var(--accent);
+    font-size: 0.8rem;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+  h1 {
+    font-size: 1.7rem;
+    margin: 0 0 10px;
+    color: #241717;
+    line-height: 1.5;
+  }
+  .meta { color: var(--muted); font-size: 0.92rem; }
+  h2 {
+    font-size: 1.2rem;
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent-light);
+    padding-bottom: 8px;
+    margin-top: 44px;
+  }
+  h3 { font-size: 1.02rem; color: #241717; margin-top: 26px; }
+  p { margin: 14px 0; }
+  ul { padding-left: 1.3em; }
+  li { margin: 8px 0; }
+  .callout {
+    background: var(--accent-light);
+    border-radius: 10px;
+    padding: 18px 22px;
+    margin: 20px 0;
+  }
+  .callout p { margin: 6px 0; }
+  .two-col {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+  }
+  .col {
+    flex: 1;
+    min-width: 260px;
+    border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .col.good { background: var(--good-bg); border: 1px solid var(--good-border); }
+  .col.warn { background: var(--warn-bg); border: 1px solid var(--warn-border); }
+  .col h4 { margin-top: 0; font-size: 1rem; }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 18px 0;
+    font-size: 0.92rem;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    padding: 9px 12px;
+    text-align: center;
+  }
+  th { background: var(--accent); color: #fff; font-weight: 600; }
+  tr:nth-child(even) td { background: #fbfafa; }
+  .stat-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin: 18px 0;
+  }
+  .stat-card {
+    flex: 1;
+    min-width: 140px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .stat-card .num { font-size: 1.5rem; font-weight: 700; color: var(--accent); }
+  .stat-card .label { font-size: 0.82rem; color: var(--muted); margin-top: 4px; }
+  .quote {
+    border-left: 4px solid var(--accent);
+    padding: 4px 18px;
+    margin: 20px 0;
+    font-style: italic;
+    color: #444;
+  }
+  .divider { height: 1px; background: var(--border); margin: 40px 0; }
+  .chart-box {
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 20px 16px 12px;
+    margin: 20px 0;
+    overflow-x: auto;
+  }
+  .chart-box svg { display: block; margin: 0 auto; }
+  .figure-caption {
+    font-size: 0.85rem;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 8px;
+    padding: 0 8px;
+  }
+  .legend {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    font-size: 0.82rem;
+    color: #444;
+  }
+  .legend span.swatch {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    margin-right: 5px;
+    vertical-align: middle;
+  }
+  footer { color: var(--muted); font-size: 0.85rem; text-align: center; margin-top: 50px; }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <header class="hero">
+    <span class="tag">ESOC 2026 · NeuroNews International · 2026年5月13日</span>
+    <h1>取栓術用於24～72小時中風：功能預後改善，但腦出血與死亡風險增加</h1>
+    <div class="meta">
+      作者：Jamie Bell　｜　資料發表：Jianmin Liu（上海海軍軍醫大學）等 LATE-MT試驗研究團隊<br>
+      發表場合：2026歐洲中風組織會議（ESOC，5月6–8日，荷蘭馬斯垂克）
+    </div>
+  </header>
+
+  <div class="callout">
+    <p><strong>一句話總結：</strong>LATE-MT隨機對照試驗證實，發病後24～72小時做血管內取栓術能顯著改善90天功能預後，但同時顯著增加腦出血與死亡風險——研究者稱這是一種「權衡」（trade-off）。</p>
+  </div>
+
+  <h2>研究背景</h2>
+  <p>取栓術在早期時間窗的效益早已明確：2015年多項隨機試驗確立6小時內的療效與安全性；2018年DAWN與DEFUSE-3試驗將這個窗口延伸至6～24小時。近年觀察性研究進一步提出，「慢速進展型」中風病人即使超過24小時，仍可能從取栓術中獲益。LATE-MT正是為了用隨機對照試驗驗證這個假設而設計。</p>
+
+  <h2>試驗設計</h2>
+  <div class="stat-row">
+    <div class="stat-card"><div class="num">341</div><div class="label">隨機分配病人數</div></div>
+    <div class="stat-card"><div class="num">24–72</div><div class="label">發病後小時數</div></div>
+    <div class="stat-card"><div class="num">2組</div><div class="label">取栓+藥物 vs 純藥物</div></div>
+  </div>
+  <p>前瞻性多中心隨機對照試驗，納入前循環大血管阻塞（LVO）急性缺血性中風病人，發病後24～72小時內就診者，隨機分配至：</p>
+  <ul>
+    <li><strong>介入組：</strong>血管內取栓術＋標準藥物治療</li>
+    <li><strong>對照組：</strong>僅標準藥物治療</li>
+  </ul>
+
+  <h2>主要療效結果：取栓組明顯較好</h2>
+  <table>
+    <thead><tr><th>指標</th><th>結果</th></tr></thead>
+    <tbody>
+      <tr><td>90天mRS等級移動　Common OR</td><td>0.57（95% CI 0.39–0.84，p=0.0046）</td></tr>
+      <tr><td>調整後OR</td><td>0.47（95% CI 0.32–0.7，p=0.002）</td></tr>
+      <tr><td>mRS 0–2 vs 3–5／3–6　二分法比較</td><td>取栓組皆較佳</td></tr>
+      <tr><td>效用加權mRS、Barthel Index、生活品質評分</td><td>取栓組顯著較佳</td></tr>
+      <tr><td>第7天梗塞體積</td><td>兩組相近</td></tr>
+    </tbody>
+  </table>
+  <p style="color:var(--muted); font-size:0.9rem;">值得注意的是，兩組梗塞體積相近，代表取栓術帶來的功能改善不完全能用「救回更多腦組織」來解釋。</p>
+
+  <div class="chart-box">
+    <svg viewBox="0 0 620 150" xmlns="http://www.w3.org/2000/svg">
+      <line x1="469.5" y1="20" x2="469.5" y2="130" stroke="#bbb" stroke-dasharray="4,3"/>
+      <text x="469.5" y="14" text-anchor="middle" font-size="11" fill="#999">OR=1（無差異）</text>
+
+      <line x1="288.4" y1="40" x2="436.0" y2="40" stroke="#9c3d3d" stroke-width="2"/>
+      <circle cx="361.4" cy="40" r="6" fill="#9c3d3d"/>
+      <text x="30" y="45" font-size="13" fill="#333">Common OR</text>
+      <text x="446.0" y="45" font-size="12" fill="#555">0.57 (0.39–0.84)</text>
+
+      <line x1="250.4" y1="90" x2="400.9" y2="90" stroke="#9c3d3d" stroke-width="2"/>
+      <circle cx="324.3" cy="90" r="6" fill="#9c3d3d"/>
+      <text x="30" y="95" font-size="13" fill="#333">調整後OR</text>
+      <text x="410.9" y="95" font-size="12" fill="#555">0.47 (0.32–0.7)</text>
+    </svg>
+    <div class="figure-caption">依論文報導數據重製：90天mRS等級移動分析的勝算比（OR）森林圖。OR小於1代表取栓組整體預後優於對照組，兩者信賴區間皆未跨過1，顯示效果具統計顯著性。</div>
+  </div>
+
+  <h2>安全性結果：風險同步升高</h2>
+  <div class="two-col">
+    <div class="col warn">
+      <h4>出血相關</h4>
+      <p>任何顱內出血：<strong>28.3%</strong>（取栓組）vs <strong>5.5%</strong>（對照組）</p>
+      <p>症狀性顱內出血：<strong>4.8%</strong> vs <strong>0%</strong></p>
+    </div>
+    <div class="col warn">
+      <h4>其他不良事件</h4>
+      <p>嚴重不良事件：22% vs 13.1%</p>
+      <p>特別關注不良事件：15.5% vs 8.9%（含手術併發症、神經惡化、腦水腫、血管再阻塞、肺炎、復發中風）</p>
+    </div>
+  </div>
+
+  <div class="chart-box">
+    <svg viewBox="0 0 500 260" xmlns="http://www.w3.org/2000/svg">
+      <line x1="20" y1="240" x2="490" y2="240" stroke="#999" stroke-width="1"/>
+      <rect x="40" y="70.2" width="26" height="169.8" fill="#9c3d3d" />
+      <text x="53.0" y="64.2" text-anchor="middle" font-size="11" fill="#9c3d3d">28.3%</text>
+      <rect x="72" y="207.0" width="26" height="33.0" fill="#8fa8b8" />
+      <text x="85.0" y="201.0" text-anchor="middle" font-size="11" fill="#5c7688">5.5%</text>
+
+      <rect x="132" y="211.2" width="26" height="28.8" fill="#9c3d3d" />
+      <text x="145.0" y="205.2" text-anchor="middle" font-size="11" fill="#9c3d3d">4.8%</text>
+      <rect x="164" y="240.0" width="26" height="0.0" fill="#8fa8b8" />
+      <text x="177.0" y="234.0" text-anchor="middle" font-size="11" fill="#5c7688">0%</text>
+
+      <rect x="224" y="108.0" width="26" height="132.0" fill="#9c3d3d" />
+      <text x="237.0" y="102.0" text-anchor="middle" font-size="11" fill="#9c3d3d">22%</text>
+      <rect x="256" y="161.4" width="26" height="78.6" fill="#8fa8b8" />
+      <text x="269.0" y="155.4" text-anchor="middle" font-size="11" fill="#5c7688">13.1%</text>
+
+      <rect x="316" y="147.0" width="26" height="93.0" fill="#9c3d3d" />
+      <text x="329.0" y="141.0" text-anchor="middle" font-size="11" fill="#9c3d3d">15.5%</text>
+      <rect x="348" y="186.6" width="26" height="53.4" fill="#8fa8b8" />
+      <text x="361.0" y="180.6" text-anchor="middle" font-size="11" fill="#5c7688">8.9%</text>
+
+      <rect x="408" y="204.0" width="26" height="36.0" fill="#9c3d3d" />
+      <text x="421.0" y="198.0" text-anchor="middle" font-size="11" fill="#9c3d3d">6%</text>
+      <rect x="440" y="229.2" width="26" height="10.8" fill="#8fa8b8" />
+      <text x="453.0" y="223.2" text-anchor="middle" font-size="11" fill="#5c7688">1.8%</text>
+
+      <text x="69.0" y="255" text-anchor="middle" font-size="11" fill="#444">任何顱內出血</text>
+      <text x="161.0" y="255" text-anchor="middle" font-size="11" fill="#444">症狀性顱內出血</text>
+      <text x="253.0" y="255" text-anchor="middle" font-size="11" fill="#444">嚴重不良事件</text>
+      <text x="345.0" y="255" text-anchor="middle" font-size="11" fill="#444">特別關注事件</text>
+      <text x="437.0" y="255" text-anchor="middle" font-size="11" fill="#444">死亡率</text>
+    </svg>
+    <div class="legend">
+      <span><span class="swatch" style="background:#9c3d3d;"></span>取栓組（介入組）</span>
+      <span><span class="swatch" style="background:#8fa8b8;"></span>對照組（僅藥物）</span>
+    </div>
+    <div class="figure-caption">依論文報導數據重製：安全性結果比較。可見每一項風險指標，取栓組都高於對照組，其中出血相關與死亡率的差距最為明顯。</div>
+  </div>
+
+  <div class="quote">
+    研究者Jianmin Liu表示，死亡率的差異讓團隊「特別擔憂」——取栓組死亡率6%，對照組僅1.8%。
+  </div>
+
+  <h2>亞組分析</h2>
+  <p>大部分預先設定的亞組分析結果一致，但<strong>內頸動脈（ICA）阻塞</strong>的病人，取栓術的獲益似乎更明顯，優於其他阻塞位置的病人。</p>
+
+  <h2>研究者的結論</h2>
+  <div class="two-col">
+    <div class="col good">
+      <h4>Jianmin Liu（共同主持人）</h4>
+      <p>「適當篩選目標病人」後，取栓術在這個特別晚的時間窗仍可視為有效的治療方式。</p>
+    </div>
+    <div class="col good">
+      <h4>Craig Anderson（共同主持人，George Institute）</h4>
+      <p>這些數據代表一種「權衡」——在24～72小時就診的病人身上，取栓術能預防失能，但同時帶來「小幅」的併發症風險增加。</p>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <footer>
+    資料來源：NeuroNews International，2026年5月13日<br>
+    〈Stroke thrombectomy beyond 24 hours improves functional outcome but carries increased cerebral haemorrhage and mortality risks〉<br>
+    本頁為報導內容之整理摘要，供個人學習參考。
+  </footer>
+
+</div>
+</body>
+</html>
